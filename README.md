@@ -8,7 +8,7 @@ The path must include the full path to the file, including the file name.
    /patcher/files/new/element/data/elements.data # file for the update server
 2) Start/Stop the server.
 3) Start creating updates using CPW
-For the program to work correctly, create a "new" folder in the folder, into which copy the edited files.
+For the program to work correctly, copy the edited files to the "new" folder.
 The program is able to distinguish whether a file has been changed or not.
 The program expects the cpw server to be located in the /patcher/ folder at the root of the file system.
 The program uses the Ubuntu 14.04 command set
@@ -41,7 +41,7 @@ Replace the address and credentials with yours, with the rights to perform opera
    /patcher/files/new/element/data/elements.data # файл для сервера обновлений
 2) Запуск / Остановка сервера.
 3) Запуск создания обновлений при помощи CPW
-Для корректной работы программы создайте в папке папку "new", в которую скопируйте редактируемые файлы.
+Для корректной работы программы в папку "new" скопируйте редактируемые файлы.
 Программа умеет различать был изменен файл или нет.
 Программа ожидает что сервер cpw находится в папке /patcher/ в корне файловой системы.
 Программа использует набор команд Ubuntu 14.04
