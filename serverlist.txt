@@ -1,0 +1,25 @@
+###############################################
+#   Пути для сохранения файлов на сервере    
+#   При необходимости добавьте свои, 
+#   Количество и порядок путей значения не имеют
+#
+#   Данная версия не поддерживает npcgen.data
+#   в папках данжей
+#
+###############################################
+#
+# Пути к каталогу сервера
+#
+/home/gamed/config/elements.data
+/home/gamed/config/gshopsev.data
+/home/gamed/config/gshopsev1.data
+/home/gamed/config/gshopsev2.data
+/home/gamed/config/tasks.data
+#
+# Пути к каталогу для cpw
+#
+/patcher/files/new/element/data/elements.data
+/patcher/files/new/element/data/tasks.data
+/patcher/files/new/element/data/gshop.data
+/patcher/files/new/element/data/gshop1.data
+/patcher/files/new/element/data/gshop2.data
