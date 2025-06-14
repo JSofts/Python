@@ -8,7 +8,7 @@ class myServer():
     Result = 0
 
     def ping(self):
-        result = ping3.ping(self.Host, timeout=1)
+        result = ping3.ping(self.Host, timeout = 5)
         return result is not None
        
     def hash_file(self, filename):        
@@ -24,7 +24,7 @@ class myServer():
         try:
             ssh = paramiko.SSHClient()
             ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-            ssh.connect(hostname=self.Host, username=self.User, password=self.Passwd, timeout=1)
+            ssh.connect(hostname=self.Host, username=self.User, password=self.Passwd, timeout = 5)
             stdin, stdout, stderr = ssh.exec_command('/home/stop.sh')
             self.Result = stdout.read().decode('utf-8')# + ' // ' + stderr.read().decode('utf-8')
         finally:
@@ -34,7 +34,7 @@ class myServer():
         try:
             ssh = paramiko.SSHClient()
             ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-            ssh.connect(hostname=self.Host, username=self.User, password=self.Passwd, timeout=1)
+            ssh.connect(hostname=self.Host, username=self.User, password=self.Passwd, timeout = 5)
             stdin, stdout, stderr = ssh.exec_command('/home/start.sh')
             self.Result = stdout.read().decode('utf-8')# + ' // ' + stderr.read().decode('utf-8')
         finally:
@@ -45,7 +45,7 @@ class myServer():
         try:
             ssh = paramiko.SSHClient()
             ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-            ssh.connect(hostname=self.Host, username=self.User, password=self.Passwd, timeout=1)
+            ssh.connect(hostname=self.Host, username=self.User, password=self.Passwd, timeout = 5)
             stdin, stdout, stderr = ssh.exec_command('/patcher/cpw.sh')
             self.Result = stdout.read().decode('utf-8')# + ' // ' + stderr.read().decode('utf-8')
         finally:
@@ -53,7 +53,7 @@ class myServer():
         
     def ping(self):
         try:
-            result = ping3.ping(self.Host, timeout=1)
+            result = ping3.ping(self.Host, timeout = 5)
             return result is not None            
         except:
             return False
@@ -63,7 +63,7 @@ class myServer():
             try:
                 stream = paramiko.SSHClient()
                 stream.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-                stream.connect(hostname=self.Host, username=self.User, password=self.Passwd, timeout=1)
+                stream.connect(hostname=self.Host, username=self.User, password=self.Passwd, timeout = 5)
                 stdin, stdout, stderr = stream.exec_command(f"ps -aux | grep -v 'grep' | grep -w 'gs'")
                 output = stdout.read().decode('utf-8')                
             finally:
@@ -76,7 +76,7 @@ class myServer():
             try:
                 stream = paramiko.SSHClient()
                 stream.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-                stream.connect(hostname=self.Host, username=self.User, password=self.Passwd, timeout=1)
+                stream.connect(hostname=self.Host, username=self.User, password=self.Passwd, timeout = 5)
                 stdin, stdout, stderr = stream.exec_command(f"ps -aux | grep -v 'grep' | grep -w '{demon}'")
                 output = stdout.read().decode('utf-8')            
                 result = demon in output
@@ -96,7 +96,7 @@ class myServer():
             try:
                 stream = paramiko.SSHClient()
                 stream.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-                stream.connect(hostname=self.Host, username=self.User, password=self.Passwd, timeout=1)
+                stream.connect(hostname=self.Host, username=self.User, password=self.Passwd, timeout = 5)
                 #stdin, stdout, stderr = 
                 stream.exec_command(f"cd /home/gamed/; ./gs {comand} > /home/logs/{comand}.log &")
             finally:
@@ -108,7 +108,7 @@ class myServer():
             try:
                 stream = paramiko.SSHClient()
                 stream.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-                stream.connect(hostname=self.Host, username=self.User, password=self.Passwd, timeout=1)
+                stream.connect(hostname=self.Host, username=self.User, password=self.Passwd, timeout = 5)
                 stdin, stdout, stderr = stream.exec_command('poweroff')
                 self.Result = stdout.read().decode('utf-8')      
             finally:

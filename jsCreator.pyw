@@ -218,7 +218,7 @@ class application(Frame):
                 if not line.startswith('/'): continue  # Пропускаем, если строка не начинается с '/'
                 try:                    
                     if os.path.basename(line) == file_name:
-                        with pysftp.Connection(host=self.server.Host, username=self.server.User, password=self.server.Passwd, timeout=1) as sftp:
+                        with pysftp.Connection(host=self.server.Host, username=self.server.User, password=self.server.Passwd) as sftp:
                             sftp.put(localpath=localpath, remotepath=line, confirm=True)                            
                             self.tress.item(item, values=(file_name, "Файл обновлен..."), tags=('grin', 'f_purpure'))
                             ls.write(f"{file_name} = {line}\n")
