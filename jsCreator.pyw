@@ -74,7 +74,7 @@ class application(Frame):
 
         # Настройка тегов для цветовой маркировки
         self.tress.tag_configure('black', background='#000000')
-        self.tress.tag_configure('gray', background='#cccccc')
+        self.tress.tag_configure('gray', background="#c0c0c0")
         self.tress.tag_configure('grin', background='#00ff00')
         self.tress.tag_configure('red', background="#ff0000")
         self.tress.tag_configure('blue', background="#0000ff")
@@ -83,7 +83,7 @@ class application(Frame):
 
         # задаем шаблоны цвета для шрифта
         self.tress.tag_configure('f_black', foreground='#000000')
-        self.tress.tag_configure('f_gray', foreground='#cccccc')
+        self.tress.tag_configure('f_gray', foreground='#808080')
         self.tress.tag_configure('f_grin', foreground='#00ff00')
         self.tress.tag_configure('f_red', foreground="#ff0000")
         self.tress.tag_configure('f_blue', foreground="#0000ff")
@@ -198,7 +198,7 @@ class application(Frame):
             if hash != self.server.hash_file(file_name):
                 self.tress.insert("", "end", values=(line, "Изменен..."), tags=('gray', 'f_red',))
             else:
-                self.tress.item("", values=(file_name, "Не менялся"), tags=('yellow', 'f_gray'))                                
+                self.tress.insert("", "end",values=(line, "Не менялся"), tags=('f_gray'))                                
     
     def skan(self):               
         # Получаем путь к папке скрипта
