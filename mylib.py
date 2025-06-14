@@ -46,7 +46,7 @@ class myServer():
             ssh = paramiko.SSHClient()
             ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
             ssh.connect(hostname=self.Host, username=self.User, password=self.Passwd, timeout = 5)
-            stdin, stdout, stderr = ssh.exec_command('/patcher/cpw.sh')
+            stdin, stdout, stderr = ssh.exec_command('/patcher/cpw.sh &')
             self.Result = stdout.read().decode('utf-8')# + ' // ' + stderr.read().decode('utf-8')
         finally:
             ssh.close()

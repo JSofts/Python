@@ -196,7 +196,9 @@ class application(Frame):
             if not os.path.isfile(file_name): continue  # Пропускаем, если это не файл
             hash = config.get(line, 'md5', fallback = 0)            
             if hash != self.server.hash_file(file_name):
-                self.tress.insert("", "end", values=(line, "Изменен..."), tags=('gray', 'f_red',))                                
+                self.tress.insert("", "end", values=(line, "Изменен..."), tags=('gray', 'f_red',))
+            else:
+                self.tress.item("", values=(file_name, "Не менялся"), tags=('yellow', 'f_gray'))                                
     
     def skan(self):               
         # Получаем путь к папке скрипта
@@ -204,7 +206,6 @@ class application(Frame):
         ScanPath = SelfPath + '\\new'        
 
         def copy_file_to_server(item, localpath, hash):
-            """Копирует файл на сервер."""
             List = open(SelfPath + '\\serverlist.txt', 'r').readlines()
             ls = open('server.log', 'a')
             d = date.today()
