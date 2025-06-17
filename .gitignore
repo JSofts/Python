@@ -1,3 +1,4 @@
 /settings.ini
-*.bak
-*.data
+/new/*.bak
+/new/*.data
+*.log
