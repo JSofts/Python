@@ -1,4 +1,5 @@
-/settings.ini
-/new/*.bak
-/new/*.data
+settings.ini
+*.bak
+*.data
 *.log
+*.txt
