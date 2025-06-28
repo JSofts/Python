@@ -23,3 +23,5 @@
 /patcher/files/new/element/data/gshop.data
 /patcher/files/new/element/data/gshop1.data
 /patcher/files/new/element/data/gshop2.data
+/patcher/files/new/element/configs/item_ext_desc.txt
+/patcher/files/new/element/surfaces/iconset/iconlist_guild.txt

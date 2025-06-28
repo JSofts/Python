@@ -217,13 +217,24 @@ class application(Frame):
                 line = line.strip()
                 if not line: continue
                 if not line.startswith('/'): continue  # Пропускаем, если строка не начинается с '/'
-                try:                    
-                    if os.path.basename(line) == file_name:
+                try:
+                    fl = os.path.basename(line)  # Получаем имя файла из пути
+                    if not fl: continue  # Пропускаем, если имя файла пустое                    
+                    if fl == file_name:
                         with pysftp.Connection(host=self.server.Host, username=self.server.User, password=self.server.Passwd) as sftp:
-                            sftp.put(localpath=localpath, remotepath=line, confirm=True)                            
-                            self.tress.item(item, values=(file_name, "Файл обновлен..."), tags=('grin', 'f_purpure'))
-                            ls.write(f"{file_name} = {line}\n")
-                            rr = True
+                            rr = sftp.put(localpath=localpath, remotepath=line, confirm=True)
+                            if rr:
+                                self.tress.item(item, values=(file_name, "Файл обновлен..."), tags=('grin', 'f_purpure'))
+                                ls.write(f"{file_name} = {line}\n")
+                                rr = True
+                            else:
+                                self.tress.item(item, values=(file_name, "Ошибка при копировании"), tags=('black', 'f_red'))
+                                ls.write(f"{file_name} - Ошибка при копировании\n{rr}\n")
+                                rr = False
+                    else:
+                        self.tress.item(item, values=(file_name, "Файл не найден на сервере"), tags=('black', 'f_red'))
+                        ls.write(f"{file_name} - Файл не найден на сервере\n")
+                        rr = False
                 except Exception as e:
                     ls.write(f"{file_name} - Ошибка: {e}\n")
                     self.tress.item(item, values=(file_name, f"Ошибка : {e}"), tags=('f_red', 'black'))               
@@ -256,9 +267,11 @@ class application(Frame):
                     else:
                         # Файлы не совпадают, копируем файл на сервер
                         copy_file_to_server(item, file_path, file_hash)  # Копируем файл на сервер
-                else: # Отсутствует секция в настройках                                        
-                    if copy_file_to_server(item, file_path, file_hash):  # Копируем файл на сервер
-                        config.add_section(file_name)
+                else: # Отсутствует секция в настройках 
+                    config.add_section(file_name)  # Создаем секцию для файла
+                    config.set(file_name, 'md5', 0)  # Устанавливаем хеш файла
+                    with open('settings.ini', 'w') as configfile: config.write(configfile)
+                    copy_file_to_server(item, file_path, file_hash)  # Копируем файл на сервер
             else:
                 # Файл не найден в папке для обновлений, отмечаем строчку серым цветом
                 self.tress.item(item, values=(file_name, "Файл не найден"), tags=('gray',))
