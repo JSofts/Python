@@ -227,10 +227,12 @@ class application(Frame):
                                 self.tress.item(item, values=(file_name, "Файл обновлен..."), tags=('grin', 'f_purpure'))
                                 ls.write(f"{file_name} = {line}\n")
                                 rr = True
+                                break
                             else:
                                 self.tress.item(item, values=(file_name, "Ошибка при копировании"), tags=('black', 'f_red'))
                                 ls.write(f"{file_name} - Ошибка при копировании\n{rr}\n")
-                                rr = False                    
+                                rr = False 
+                                break                   
                 except Exception as e:
                     ls.write(f"{file_name} - Ошибка: {e}\n")
                     self.tress.item(item, values=(file_name, f"Ошибка : {e}"), tags=('f_red', 'black'))               
