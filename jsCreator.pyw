@@ -230,11 +230,7 @@ class application(Frame):
                             else:
                                 self.tress.item(item, values=(file_name, "Ошибка при копировании"), tags=('black', 'f_red'))
                                 ls.write(f"{file_name} - Ошибка при копировании\n{rr}\n")
-                                rr = False
-                    else:
-                        self.tress.item(item, values=(file_name, "Файл не найден на сервере"), tags=('black', 'f_red'))
-                        ls.write(f"{file_name} - Файл не найден на сервере\n")
-                        rr = False
+                                rr = False                    
                 except Exception as e:
                     ls.write(f"{file_name} - Ошибка: {e}\n")
                     self.tress.item(item, values=(file_name, f"Ошибка : {e}"), tags=('f_red', 'black'))               
@@ -247,6 +243,8 @@ class application(Frame):
             with open('settings.ini', 'w') as configfile: config.write(configfile)
             if not rr:
                 self.sbtext.config(text=f'Для {file_name} не указаны пути для копирования.')
+                ls.write(f"{file_name} - Не указаны пути для копирования\n")
+                self.tress.item(item, values=(file_name, "Не указаны пути для копирования"), tags=('black', 'f_red'))               
             return rr
 
         # чтение списка из файла serverlist.txt        
