@@ -215,7 +215,7 @@ class application(Frame):
             rr = False                        
             for line in List:
                 line = line.strip()
-                if not line: continue
+                if not line or line.startswith('#'): continue
                 if not line.startswith('/'): continue  # Пропускаем, если строка не начинается с '/'
                 try:
                     fl = os.path.basename(line)  # Получаем имя файла из пути
@@ -240,8 +240,9 @@ class application(Frame):
                     self.tress.item(item, values=(file_name, f"Ошибка : {e}"), tags=('f_red', 'black'))               
 
             ls.close()
-            if rr: 
-                config.set(file_name, 'md5', hash)                
+            if rr:
+                if not config.has_section(file_name): config.add_section(file_name)
+                config.set(file_name, 'md5', str(hash)) 
                 
             with open('settings.ini', 'w') as configfile: config.write(configfile)
             if not rr:
@@ -269,7 +270,7 @@ class application(Frame):
                         copy_file_to_server(item, file_path, file_hash)  # Копируем файл на сервер
                 else: # Отсутствует секция в настройках 
                     config.add_section(file_name)  # Создаем секцию для файла
-                    config.set(file_name, 'md5', 0)  # Устанавливаем хеш файла
+                    config.set(file_name, 'md5', '0')  # Устанавливаем хеш файла
                     with open('settings.ini', 'w') as configfile: config.write(configfile)
                     copy_file_to_server(item, file_path, file_hash)  # Копируем файл на сервер
             else:
